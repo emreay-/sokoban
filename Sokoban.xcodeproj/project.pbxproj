@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		F330703C1E6C24890003D946 /* Sokoban */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Sokoban; sourceTree = BUILT_PRODUCTS_DIR; };
 		F330703F1E6C24890003D946 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F3F24A1F1E6C6F9E00D0FED7 /* gridmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gridmap.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				F330703F1E6C24890003D946 /* main.cpp */,
+				F3F24A1F1E6C6F9E00D0FED7 /* gridmap.h */,
 			);
 			path = Sokoban;
 			sourceTree = "<group>";
@@ -246,6 +248,7 @@
 				F33070451E6C24890003D946 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
