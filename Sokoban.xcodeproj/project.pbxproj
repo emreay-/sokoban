@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F33070401E6C24890003D946 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F330703F1E6C24890003D946 /* main.cpp */; };
+		F3F24A211E6C779100D0FED7 /* gridmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3F24A201E6C779100D0FED7 /* gridmap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +27,8 @@
 		F330703C1E6C24890003D946 /* Sokoban */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Sokoban; sourceTree = BUILT_PRODUCTS_DIR; };
 		F330703F1E6C24890003D946 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F3F24A1F1E6C6F9E00D0FED7 /* gridmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gridmap.h; sourceTree = "<group>"; };
+		F3F24A201E6C779100D0FED7 /* gridmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gridmap.cpp; sourceTree = "<group>"; };
+		F3F24A221E6C7A1200D0FED7 /* sokoban.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sokoban.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 			children = (
 				F330703F1E6C24890003D946 /* main.cpp */,
 				F3F24A1F1E6C6F9E00D0FED7 /* gridmap.h */,
+				F3F24A201E6C779100D0FED7 /* gridmap.cpp */,
+				F3F24A221E6C7A1200D0FED7 /* sokoban.h */,
 			);
 			path = Sokoban;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F24A211E6C779100D0FED7 /* gridmap.cpp in Sources */,
 				F33070401E6C24890003D946 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
