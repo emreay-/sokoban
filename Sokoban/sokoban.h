@@ -9,6 +9,15 @@
 #ifndef sokoban_h
 #define sokoban_h
 
-bool verbose = true;
+namespace sokoban {
+    //bool verbose = true;
+    const char kFreeSpace = ' ';
+    const char kWall = '#';
+    const char kGoal = '.';
+    const char kPlayer = '@';
+    const char kPlayerOnGoal = '+';
+    const char kBox = '$';
+    const char kBoxOnGoal = '*';
+} /* namespace sokoban */
 
 #endif /* sokoban_h */
