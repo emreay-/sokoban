@@ -11,6 +11,7 @@
 #include <utility> //for std::pair
 #include <vector>
 #include <map>
+#include <algorithm>
 #include "sokoban.h"
 
 namespace gridmap {

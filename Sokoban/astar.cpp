@@ -33,11 +33,12 @@ namespace astar {
             gridmap::Coordinate previous = parent[current];
             gridmap::Coordinate difference = SubtractCoordinates(current, previous);
             action_output += kActions[difference];
-            action_output += ' ';
+            //action_output += ' ';
             current = previous;
         }
-        std::reverse(action_output.begin(), action_output.end());
-        action_output.erase(0,1);
+        reverse(action_output.begin(), action_output.end());
+        //action_output.erase(0,1);
+        //action_output += '\n';
         return action_output;
     }
     

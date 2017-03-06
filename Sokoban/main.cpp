@@ -40,7 +40,7 @@ int main(int argc, const char * argv[]) {
                 break;
             }
         }
-        std::cout << output;        
+        std::cout << output << std::endl;
     }
     return 0;
 }
