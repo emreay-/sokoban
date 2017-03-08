@@ -8,9 +8,13 @@
 
 #ifndef sokoban_h
 #define sokoban_h
-
 namespace sokoban {
-    //bool verbose = true;
+
+    enum Verbose {
+        NONE = 0,
+        FEW = 1,
+        INTERACTIVE = 2        
+    };
     const char kFreeSpace = ' ';
     const char kWall = '#';
     const char kGoal = '.';
@@ -18,6 +22,7 @@ namespace sokoban {
     const char kPlayerOnGoal = '+';
     const char kBox = '$';
     const char kBoxOnGoal = '*';
+    const char kShowPath = ',';
 } /* namespace sokoban */
 
 #endif /* sokoban_h */

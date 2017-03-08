@@ -22,13 +22,16 @@ namespace gridmap {
     
     class GridMap{
     public:
+        GridMap(sokoban::Verbose verbose) : verbose_(verbose) {};
         int SearchMap(const char char2find, CoordinateVector& locations);
         CoordinateVector GetNeighbours(Coordinate location);
         int ManhattanDistance(Coordinate c1, Coordinate c2);
         void AddLineToMap(std::vector< char >);
+        MapType const getMap() {return map_;}
 
     private:
         MapType map_;
+        sokoban::Verbose verbose_;
 
     }; // class GridMap
 

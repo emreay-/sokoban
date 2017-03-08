@@ -9,8 +9,8 @@
 #include "astar.h"
 
 int main(int argc, const char * argv[]) {
-    gridmap::GridMap game_map;
-    astar::Astar path_finder;
+    gridmap::GridMap game_map(sokoban::Verbose::NONE);
+    astar::Astar path_finder(sokoban::Verbose::INTERACTIVE);
     std::string input_map_line;
     std::vector< char > temp_map_line;
     
@@ -28,19 +28,23 @@ int main(int argc, const char * argv[]) {
     if (number_of_player == 0) {
         int number_of_player_on_goal = game_map.SearchMap(sokoban::kPlayerOnGoal, on_goal_coordinate);
         if (number_of_player_on_goal != 0) std::cout << astar::kPlayerOnGoalOutput; // end of game
-        else std::cout << "No player exists on the map. There must be something wrong..." << std::endl;
+        else std::cout << astar::kNoPathOutput << std::endl;
     } else if (number_of_player == 1) {
         // if a not-on-the-goal player is found, search the map for goals
-        game_map.SearchMap(sokoban::kGoal, goal_coordinate);
-        gridmap::Coordinate player = player_coordinate[0];
-        std::string output = "";
-        for (auto goal : goal_coordinate) {
-            output = path_finder.FindPath(game_map, player, goal);
-            if (output != astar::kNoPathOutput) {
-                break;
+        int number_of_goals = game_map.SearchMap(sokoban::kGoal, goal_coordinate);
+        if (number_of_goals != 0) {
+            gridmap::Coordinate player = player_coordinate[0];
+            std::string output = "";
+            for (auto goal : goal_coordinate) {
+                output = path_finder.FindPath(game_map, player, goal);
+                if (output != astar::kNoPathOutput) {
+                    break;
+                }
             }
+            std::cout << output << std::endl;
+        } else {
+            std::cout << astar::kNoPathOutput << std::endl;
         }
-        std::cout << output << std::endl;
     }
     return 0;
 }

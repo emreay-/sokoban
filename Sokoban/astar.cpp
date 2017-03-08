@@ -10,11 +10,11 @@
 #include "astar.h"
 
 namespace astar {
-    Astar::Astar() {
-        kActions[gridmap::kDirections[0]] = 'U'; // up
-        kActions[gridmap::kDirections[1]] = 'L'; // left
-        kActions[gridmap::kDirections[2]] = 'D'; // down
-        kActions[gridmap::kDirections[3]] = 'R'; // right
+    Astar::Astar(sokoban::Verbose verbose) : verbose_(verbose)  {
+        actions_[gridmap::kDirections[0]] = "U"; // up
+        actions_[gridmap::kDirections[1]] = "L"; // left
+        actions_[gridmap::kDirections[2]] = "D"; // down
+        actions_[gridmap::kDirections[3]] = "R"; // right
     };
     Astar::~Astar() {};
     
@@ -26,19 +26,43 @@ namespace astar {
         return std::make_pair(line1 - line2, column1 - column2);
     }
     
-    std::string Astar::RecoverPath(LinkType parent, const gridmap::Coordinate start, const gridmap::Coordinate target) {
+    std::string Astar::RecoverPath(LinkType parent, const gridmap::Coordinate start, const gridmap::Coordinate target, gridmap::MapType &map) {
         std::string action_output = "";
         gridmap::Coordinate current = target;
         while (current != start) {
             gridmap::Coordinate previous = parent[current];
             gridmap::Coordinate difference = SubtractCoordinates(current, previous);
-            action_output += kActions[difference];
-            //action_output += ' ';
+            action_output += actions_[difference];
+            action_output += " ";
+            map[current.first][current.second] = sokoban::kShowPath;
+            
+            if (verbose_ == sokoban::Verbose::INTERACTIVE) {
+                size_t map_lines = map.size();
+                for (size_t line = 0; line < map_lines; line++) {
+                    std::cout << line << "\t";
+                    for (size_t col = 0; col < map[line].size(); col++) {
+                        std::cout << map[line][col];
+                    }
+                    std::cout << std::endl;
+                }
+                std::cout << std::endl;
+                std::cout << current.first << " , " <<current.second << std::endl << std::endl;
+            }
             current = previous;
         }
         reverse(action_output.begin(), action_output.end());
-        //action_output.erase(0,1);
+        action_output.erase(0,1);        
         //action_output += '\n';
+        if (verbose_ == sokoban::Verbose::FEW) {
+            size_t map_lines = map.size();
+            for (size_t line = 0; line < map_lines; line++) {
+                for (size_t col = 0; col < map[line].size(); col++) {
+                    std::cout << map[line][col];
+                }
+                std::cout << std::endl;
+            }
+        }
+        
         return action_output;
     }
     
@@ -88,7 +112,10 @@ namespace astar {
             no_path = true;
             action_output = kNoPathOutput;
         }
-        if (!no_path) action_output = RecoverPath(parent, start, target);
+        if (!no_path) {
+            gridmap::MapType map_to_show_path = map_input.getMap();
+            action_output = RecoverPath(parent, start, target, map_to_show_path);
+        }
         
         return action_output;
     }
