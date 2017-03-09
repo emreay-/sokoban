@@ -34,34 +34,11 @@ namespace astar {
             gridmap::Coordinate difference = SubtractCoordinates(current, previous);
             action_output += actions_[difference];
             action_output += " ";
-//            map[current.first][current.second] = sokoban::kShowPath;
-//            
-//            if (verbose_ == sokoban::Verbose::INTERACTIVE) {
-//                size_t map_lines = map.size();
-//                for (size_t line = 0; line < map_lines; line++) {
-//                    std::cout << line << "\t";
-//                    for (size_t col = 0; col < map[line].size(); col++) {
-//                        std::cout << map[line][col];
-//                    }
-//                    std::cout << std::endl;
-//                }
-//                std::cout << std::endl;
-//                std::cout << current.first << " , " <<current.second << std::endl << std::endl;
-//            }
             current = previous;
         }
         reverse(action_output.begin(), action_output.end());
         action_output.erase(0,1);        
         //action_output += '\n';
-//        if (verbose_ == sokoban::Verbose::FEW) {
-//            size_t map_lines = map.size();
-//            for (size_t line = 0; line < map_lines; line++) {
-//                for (size_t col = 0; col < map[line].size(); col++) {
-//                    std::cout << map[line][col];
-//                }
-//                std::cout << std::endl;
-//            }
-//        }
         
         return action_output;
     }
