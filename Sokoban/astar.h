@@ -29,14 +29,16 @@ namespace astar {
     
     class Astar {
     public:
-        Astar();
+        Astar(sokoban::Verbose verbose);
         ~Astar();
         std::string FindPath(gridmap::GridMap& map_input, gridmap::Coordinate player, gridmap::Coordinate target);
+        void Visualize(std::string path_to_visualize, gridmap::Coordinate start, gridmap::GridMap& grid_map);
     private:
         // to map char actions to directions i.e. {-1,0} to 'U'
-        std::map< const gridmap::Coordinate, char > kActions;
+        std::map< const gridmap::Coordinate, std::string > actions_;
         gridmap::Coordinate SubtractCoordinates(gridmap::Coordinate c1, gridmap::Coordinate c2);
         std::string RecoverPath(LinkType link, const gridmap::Coordinate start, const gridmap::Coordinate target);
+        sokoban::Verbose verbose_;
     };
     
 } /* namespace astar */

@@ -10,11 +10,11 @@
 #include "astar.h"
 
 namespace astar {
-    Astar::Astar() {
-        kActions[gridmap::kDirections[0]] = 'U'; // up
-        kActions[gridmap::kDirections[1]] = 'L'; // left
-        kActions[gridmap::kDirections[2]] = 'D'; // down
-        kActions[gridmap::kDirections[3]] = 'R'; // right
+    Astar::Astar(sokoban::Verbose verbose) : verbose_(verbose)  {
+        actions_[gridmap::kDirections[0]] = "U"; // up
+        actions_[gridmap::kDirections[1]] = "L"; // left
+        actions_[gridmap::kDirections[2]] = "D"; // down
+        actions_[gridmap::kDirections[3]] = "R"; // right
     };
     Astar::~Astar() {};
     
@@ -32,13 +32,14 @@ namespace astar {
         while (current != start) {
             gridmap::Coordinate previous = parent[current];
             gridmap::Coordinate difference = SubtractCoordinates(current, previous);
-            action_output += kActions[difference];
-            //action_output += ' ';
+            action_output += actions_[difference];
+            action_output += " ";
             current = previous;
         }
         reverse(action_output.begin(), action_output.end());
-        //action_output.erase(0,1);
+        action_output.erase(0,1);        
         //action_output += '\n';
+        
         return action_output;
     }
     
@@ -88,8 +89,51 @@ namespace astar {
             no_path = true;
             action_output = kNoPathOutput;
         }
-        if (!no_path) action_output = RecoverPath(parent, start, target);
+        if (!no_path) {
+            action_output = RecoverPath(parent, start, target);
+        }
         
         return action_output;
+    }
+    
+    void Astar::Visualize(std::string path_to_visualize, gridmap::Coordinate start, gridmap::GridMap& grid_map) {
+        gridmap::MapType map_to_show_path = grid_map.getMap();
+        gridmap::Coordinate current;
+        gridmap::Coordinate previous = start;
+        for (size_t i = 0; i < path_to_visualize.length(); i++) {
+            char c = path_to_visualize[i];
+            current = previous;
+            switch (c) {
+                case 'D':
+                    current.first++;
+                    break;
+                    
+                case 'U':
+                    current.first--;
+                    break;
+                    
+                case 'L':
+                    current.second--;
+                    break;
+                    
+                case 'R':
+                    current.second++;
+                    break;
+                    
+                default:
+                    break;
+            }
+            map_to_show_path[current.first][current.second] = sokoban::kShowPath;
+            previous = current;
+        }
+        
+        for (size_t line = 0; line < map_to_show_path.size(); line++) {
+            std::cout << line << "\t";
+            for (size_t col = 0; col < map_to_show_path[line].size(); col++) {
+                std::cout << map_to_show_path[line][col];
+            }
+            std::cout << std::endl;
+        }
+
     }
 } /* namespace astar */
