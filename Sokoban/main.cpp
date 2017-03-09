@@ -10,7 +10,7 @@
 #include "astar.h"
 
 int main(int argc, const char * argv[]) {
-    sokoban::Verbose verbose = sokoban::Verbose::NONE;
+    sokoban::Verbose verbose = sokoban::Verbose::INTERACTIVE;
     gridmap::GridMap game_map(verbose);
     astar::Astar path_finder(verbose);
     std::string input_map_line;

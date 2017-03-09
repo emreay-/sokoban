@@ -12,8 +12,7 @@ namespace sokoban {
 
     enum Verbose {
         NONE = 0,
-        FEW = 1,
-        INTERACTIVE = 2        
+        INTERACTIVE = 1
     };
     const char kFreeSpace = ' ';
     const char kWall = '#';
